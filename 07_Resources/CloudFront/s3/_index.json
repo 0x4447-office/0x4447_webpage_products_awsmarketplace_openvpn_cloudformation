@@ -1,0 +1,33 @@
+{
+	"S3WebpageXXX": {
+		"Type": "AWS::S3::Bucket",
+		"Properties": {
+			"AccessControl": "PublicRead",
+			"BucketName": { "Ref": "DomainHomePageParam" },
+			"CorsConfiguration": {
+				"CorsRules": [
+					{
+						"AllowedHeaders": ["Authorization"],
+						"AllowedMethods": ["GET"],
+						"AllowedOrigins": ["*"],
+						"MaxAge": 3000
+					}
+				]
+			},
+			"WebsiteConfiguration": {
+				"ErrorDocument": "error",
+				"IndexDocument": "index"
+			},
+			"Tags": [
+				{
+					"Key" : "Author",
+					"Value" : "0x4447 LLC"
+				},
+				{
+					"Key" : "Info",
+					"Value" : "https://0x4447.com"
+				}
+			]
+		}
+	}
+}

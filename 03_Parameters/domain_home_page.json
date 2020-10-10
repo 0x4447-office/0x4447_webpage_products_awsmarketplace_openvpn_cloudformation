@@ -1,0 +1,6 @@
+{
+	"DomainHomePageParam": {
+		"Description": "The domain of the project.",
+		"Type": "String"
+	}
+}

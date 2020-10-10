@@ -1,0 +1,26 @@
+{
+	"LambdaZZZ": {
+		"Type": "AWS::Lambda::Function",
+		"DependsOn": [
+			"LambdaZZZRole"
+		],
+		"Properties": {
+			"FunctionName": "project_name_zzz",
+			"Code": {
+				"ZipFile": { "Fn::Join": ["", [
+					"exports.handler = async (event) => {return true;};"
+				]]}
+			},
+			"Handler": "index.handler",
+			"MemorySize": 128,
+			"Role": { "Fn::GetAtt": ["LambdaZZZRole", "Arn"] },
+			"Runtime": "nodejs10.x",
+			"Timeout": 60,
+			"Environment": {
+				"Variables": {
+					"STAGE": { "Ref": "StageParam" }
+				}
+			}
+		}
+	}
+}

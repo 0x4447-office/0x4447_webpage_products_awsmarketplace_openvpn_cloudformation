@@ -1,0 +1,26 @@
+{
+	"LambdaAlarmZZZ": {
+		"Type": "AWS::CloudWatch::Alarm",
+		"Properties": {
+			"AlarmName": "project_name_lambda_zzz",
+			"AlarmDescription": "Lambda errors.",
+			"TreatMissingData": "notBreaching",
+			"ActionsEnabled": true,
+			"AlarmActions": [ { "Ref": "SNSTopic" } ],
+			"ComparisonOperator": "GreaterThanOrEqualToThreshold",
+			"EvaluationPeriods": 1,
+			"Unit": "Count",
+			"Period": 300,
+			"Threshold": 1,
+			"Namespace": "AWS/Lambda",
+			"MetricName": "Errors",
+			"Statistic": "Sum",
+			"Dimensions": [
+				{
+					"Name": "FunctionName",
+					"Value": { "Ref": "LambdaZZZ" }
+				}
+			]
+		}
+	}
+}

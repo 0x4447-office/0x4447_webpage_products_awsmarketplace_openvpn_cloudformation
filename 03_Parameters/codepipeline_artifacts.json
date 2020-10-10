@@ -1,0 +1,6 @@
+{
+	"CodePipelineArtifactsParam": {
+		"Description": "The S3 bucket name where CodePipeline will store the artifacts (this is needed only by CodePipeline to work, and pass task results to the next stage) - this bucket needs to already exists.",
+		"Type": "String"
+	}
+}

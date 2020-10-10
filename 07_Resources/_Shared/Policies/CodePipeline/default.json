@@ -1,0 +1,29 @@
+{
+	"CodePipelinePolicyCB": {
+		"Type": "AWS::IAM::Policy",
+		"Properties": {
+			"PolicyName": "Default",
+			"Roles": [
+				{ "Ref": "CodePipelineZZZRole" }
+			],
+			"PolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+					{
+						"Effect": "Allow",
+						"Action": [
+							"codebuild:BatchGetBuilds",
+							"codebuild:StartBuild"
+						],
+						"Resource": { "Fn::Sub": "arn:aws:codebuild:${AWS::Region}:${AWS::AccountId}:project/*" }
+					},
+					{
+						"Effect": "Allow",
+						"Action": "s3:*",
+						"Resource": { "Fn::Sub": "arn:aws:s3:::${CodePipelineArtifactsParam}/*"}
+					}
+				]
+			}
+		}
+	}
+}

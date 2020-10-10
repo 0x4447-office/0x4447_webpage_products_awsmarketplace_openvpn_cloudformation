@@ -1,0 +1,3 @@
+{
+	"IfAutoDeploy": { "Fn::Equals": [ {"Ref": "AutoDeployParam"}, "Yes"] }
+}

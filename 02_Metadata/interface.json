@@ -1,0 +1,34 @@
+{
+	"AWS::CloudFormation::Interface" : {
+		"ParameterGroups": [
+			{
+				"Label" : { "default" : "Basics" },
+				"Parameters" : [ "CodePipelineArtifactsParam", "AutoDeployParam" ]
+			},
+			{
+				"Label" : { "default" : "Domain" },
+				"Parameters" : [ "DomainHomePageParam", "CertificateARNParam" ]
+			},
+			{
+				"Label" : { "default" : "Company Details" },
+				"Parameters" : [ "CompanyNameParam", "YearEstablishedParam", "CompanyLogoParam" ]
+			},
+			{
+				"Label" : { "default" : "GitHub" },
+				"Parameters" : [ "GitHubAccountOwnerParam", "GitHubTokenParam", "StageParam" ]
+			}
+		],
+		"ParameterLabels": {
+			"AutoDeployParam": { "default" : "Auto Deployment" },
+			"CodePipelineArtifactsParam": { "default" : "CodePipeline Artifact" },
+			"CompanyLogoParam": { "default" : "Compay Logo" },
+			"CompanyNameParam": { "default" : "Company Name" },
+			"YearEstablishedParam": { "default" : "Year Established" },
+			"DomainHomePageParam": { "default" : "Project Domain" },
+			"GitHubAccountOwnerParam": { "default" : "GitHub Owner" },
+			"GitHubTokenParam": { "default" : "GitHub Token" },
+			"CertificateARNParam": { "default" : "Domain Cert ARN" },
+			"StageParam": { "default" : "Stage" }
+		}
+	}
+}

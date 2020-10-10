@@ -1,0 +1,15 @@
+{
+	"SNSTopic": {
+		"Type": "AWS::SNS::Topic",
+		"Properties": {
+			"DisplayName": "project_name_zzz",
+			"TopicName": "project_name_zzz",
+			"Tags": [
+				{
+					"Key": "Description",
+					"Value": "General Topic for different things."
+				}
+			]
+		}
+	}
+}

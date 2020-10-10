@@ -1,0 +1,22 @@
+{
+	"CodePipelineZZZWebhook": {
+		"Type": "AWS::CodePipeline::Webhook",
+		"Condition": "IfAutoDeploy",
+		"Properties": {
+			"Authentication": "GITHUB_HMAC",
+			"AuthenticationConfiguration": {
+				"SecretToken": { "Ref": "GitHubTokenParam" }
+			},
+			"Filters": [
+				{
+					"JsonPath": "$.ref",
+					"MatchEquals": "refs/heads/{Branch}"
+				}
+			],
+			"TargetPipeline": { "Ref": "CodePipelineZZZ" },
+			"TargetAction": "Material",
+			"TargetPipelineVersion": { "Fn::GetAtt": [ "CodePipelineZZZ", "Version" ]},
+			"RegisterWithThirdParty": true
+		}
+	}
+}

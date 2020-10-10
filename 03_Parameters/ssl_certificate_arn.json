@@ -1,0 +1,6 @@
+{
+	"CertificateARNParam": {
+		"Description": "The ARN of a SSL Certificate for the project domain.",
+		"Type": "String"
+	}
+}

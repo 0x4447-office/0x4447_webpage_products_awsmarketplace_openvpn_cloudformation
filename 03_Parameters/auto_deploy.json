@@ -1,0 +1,8 @@
+{
+	"AutoDeployParam": {
+		"Description": "Don't change this unless you forked the repos with all the extra resoruces in to your GitHub account. If you just want to deploy the stack and use it as it is (no autodeployment), then the stack won't add the webhook listner to CodePipeline which allows autodeployment. Because only if you own the repo, AWS can make a new entry for webhook messages.",
+		"Type": "String",
+		"AllowedValues" : ["No", "Yes"],
+		"Default": "No"
+	}
+}
