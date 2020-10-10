@@ -1,0 +1,66 @@
+{
+	"PipelineWebpage": {
+		"Type": "AWS::CodePipeline::Pipeline",
+		"DependsOn": "PipelineWebpageRole",
+		"Properties": {
+			"Name": "webpage_product_openvpn",
+			"ArtifactStore": {
+				"Location": { "Ref": "CodePipelineArtifactsParam" },
+				"Type": "S3"
+			},
+			"RoleArn": { "Fn::GetAtt": ["PipelineWebpageRole", "Arn" ] },
+			"Stages": [
+				{
+					"Name": "Get",
+					"Actions": [
+						{
+							"Name": "Material",
+							"RunOrder": 1,
+							"ActionTypeId": {
+								"Category": "Source",
+								"Owner": "ThirdParty",
+								"Provider": "GitHub",
+								"Version": "1"
+							},
+							"Configuration": {
+								"Owner": "0x4447-office",
+								"Repo": "0x4447_webpage_products_awsmarketplace_openvpn",
+								"Branch": { "Ref": "BranchParam" },
+								"PollForSourceChanges": false,
+								"OAuthToken": { "Ref": "GitHubTokenParam" }
+							},
+							"OutputArtifacts": [
+								{
+									"Name": "material"
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "Cast",
+					"Actions": [
+						{
+							"Name": "Mold",
+							"RunOrder": 1,
+							"InputArtifacts": [
+								{
+									"Name": "material"
+								}
+							],
+							"Configuration": {
+								"ProjectName": { "Ref": "CodeBuildWebpage" }
+							},
+							"ActionTypeId": {
+								"Category": "Build",
+								"Owner": "AWS",
+								"Provider": "CodeBuild",
+								"Version": "1"
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+}

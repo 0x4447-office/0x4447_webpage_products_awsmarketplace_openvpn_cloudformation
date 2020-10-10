@@ -1,6 +1,0 @@
-{
-	"CompanyLogoParam": {
-		"Description": "A public URL to the logo of your company.",
-		"Type": "String"
-	}
-}

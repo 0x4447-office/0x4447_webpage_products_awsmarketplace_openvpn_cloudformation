@@ -1,0 +1,7 @@
+{
+	"BranchParam": {
+		"Description": "This is the name of the branch that you want to be used when deploying the stack.",
+		"Type": "String",
+		"Default": "development"
+	}
+}

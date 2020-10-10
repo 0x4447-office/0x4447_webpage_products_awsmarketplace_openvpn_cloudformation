@@ -1,1 +1,1 @@
-Describe me
+This stack deploys the stack relate to the OpenVPN product.

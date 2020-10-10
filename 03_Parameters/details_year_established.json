@@ -1,6 +1,0 @@
-{
-	"YearEstablishedParam": {
-		"Description": "The year in which the company was created.",
-		"Type": "String"
-	}
-}

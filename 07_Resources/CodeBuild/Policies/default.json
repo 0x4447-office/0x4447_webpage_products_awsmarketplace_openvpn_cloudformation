@@ -1,0 +1,66 @@
+{
+	"CodeBuildWebpageDefaultPolicy": {
+		"Type": "AWS::IAM::Policy",
+		"Properties": {
+			"Roles": [ { "Ref": "CodeBuildWebpageRole" } ],
+			"PolicyName": "default",
+			"PolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+					{
+						"Effect": "Allow",
+						"Action": [
+							"cloudfront:CreateInvalidation"
+						],
+						"Resource": "*"
+					},
+					{
+						"Effect": "Allow",
+						"Action": [
+							"cloudfront:ListDistributions"
+						],
+						"Resource": "*"
+					},
+					{
+						"Effect": "Allow",
+						"Action": [
+							"logs:CreateLogGroup",
+							"logs:CreateLogStream",
+							"logs:PutLogEvents"
+						],
+						"Resource": [
+							{ "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/*" }
+						]
+					},
+					{
+						"Effect": "Allow",
+						"Action": "s3:*",
+						"Resource": { "Fn::Sub": "arn:aws:s3:::${CodePipelineArtifactsParam}/*"}
+					},
+                    {
+                        "Effect": "Allow",
+                        "Action": [
+                          "s3:GetBucketLocation",
+                          "s3:ListAllMyBuckets"
+                        ],
+                        "Resource": "*"
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": "s3:ListBucket",
+                        "Resource": { "Fn::Sub": "arn:aws:s3:::${S3Webpage}"}
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "s3:PutObject",
+                          "s3:GetObject",
+                          "s3:DeleteObject"
+                        ],
+                        "Resource": { "Fn::Sub": "arn:aws:s3:::${S3Webpage}/*"}
+                      }
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,50 @@
+ {
+	"CodeBuildWebpage": {
+		"Type": "AWS::CodeBuild::Project",
+		"DependsOn": "CodeBuildWebpageRole",
+		"Properties": {
+			"Name": "webpage_product_openvpn",
+			"ServiceRole": { "Fn::GetAtt": ["CodeBuildWebpageRole", "Arn"] },
+			"TimeoutInMinutes": 60,
+			"Source": {
+				"Type": "CODEPIPELINE",
+				"BuildSpec": "buildspec.yml"
+			},
+			"Artifacts": {
+				"Type": "CODEPIPELINE"
+			},
+			"Environment": {
+				"Type": "LINUX_CONTAINER",
+				"ComputeType": "BUILD_GENERAL1_SMALL",
+				"Image": "aws/codebuild/standard:3.0",
+				"EnvironmentVariables": [
+					{
+						"Name": "AWS_REGION",
+						"Type": "PLAINTEXT",
+						"Value": { "Ref": "AWS::Region" }
+					},
+					{
+						"Name": "IDENTITY_POOL_ID",
+						"Type": "PLAINTEXT",
+						"Value": { "Ref": "CognitoIdentityPool" }
+					},
+					{
+						"Name": "S3_BUCKET_EMAIL",
+						"Type": "PLAINTEXT",
+						"Value": { "Ref": "S3BucketEmailParam" }
+					},
+					{
+						"Name": "S3_BUCKET_WEBPAGE",
+						"Type": "PLAINTEXT",
+						"Value": { "Ref": "S3Webpage" }
+					},
+					{
+						"Name": "DISTRIBUTION_ID",
+						"Type": "PLAINTEXT",
+						"Value": { "Ref": "CloudFrontWebpge" }
+					}
+				]
+			}
+		}
+	}
+}
